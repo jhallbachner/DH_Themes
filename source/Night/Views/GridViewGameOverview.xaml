@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -28,7 +28,7 @@
                                     Content="r" FontFamily="Marlett"
                                     Style="{DynamicResource SimpleButton}"
                                     Command="{MainViewModel CloseGameSideBarCommand}"
-                                    DockPanel.Dock="Top" Margin="0,10,15,5" />
+                                    DockPanel.Dock="Top" Margin="0,11,15,5" />
 
                             <TextBlock Text="{DynamicResource LOCErrorNoGameSelected}" 
                                    Margin="0,20,0,0" DockPanel.Dock="Top"
@@ -115,7 +115,7 @@
 
                                             <GridEx Margin="0,5,0,10"
                                                     ColumnCount="2" StarColumns="1"
-                                                    RowCount="21" AutoLayoutColumns="2">
+                                                    RowCount="23" AutoLayoutColumns="2">
                                                 <Grid.Resources>
                                                     <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}" />
                                                 </Grid.Resources>
@@ -185,7 +185,28 @@
 
                                                 <Label Name="PART_ElemLinks" Content="{DynamicResource LOCLinksLabel}" />
                                                 <ItemsControl Name="PART_ItemsLinks" />
+
                                             </GridEx>
+                                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,5,0,15" Background="Transparent">
+                                                <ContentControl x:Name="HowLongToBeat_PluginProgressBar" MinHeight="40" DockPanel.Dock="Top" 
+                                                            Margin="0,0,0,0" HorizontalAlignment="Stretch" MinWidth="240">
+                                                    <ContentControl.OpacityMask>
+                                                        <VisualBrush AutoLayoutContent="True" Stretch="None" AlignmentX="Left" AlignmentY="Top">
+                                                            <VisualBrush.Visual>
+                                                                <Border Background="Black" CornerRadius="{DynamicResource ControlCornerRadius}" x:Name="HLTBMask"
+                                                                        Width="{Binding ElementName=HowLongToBeat_PluginProgressBar, Path=ActualWidth, TargetNullValue=0, Mode=OneWay}"
+                                                                        Height="{Binding ElementName=HowLongToBeat_PluginProgressBar, Path=ActualHeight, TargetNullValue=0, Mode=OneWay}"
+                                                                        Margin="{Binding ElementName=HowLongToBeat_PluginProgressBar, Path=Margin, TargetNullValue=0, Mode=OneWay}"/>
+                                                            </VisualBrush.Visual>
+                                                        </VisualBrush>
+                                                    </ContentControl.OpacityMask>
+                                                    <ContentControl.Resources>
+                                                        <Style TargetType="{x:Type StackPanel}">
+                                                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                                                        </Style>
+                                                    </ContentControl.Resources>
+                                                </ContentControl>
+                                            </StackPanel>
                                         </StackPanel>
                                         
                                         <StackPanel Name="PART_ElemNotes" DockPanel.Dock="Top"
